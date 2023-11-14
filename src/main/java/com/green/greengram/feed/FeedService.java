@@ -41,8 +41,8 @@ public class FeedService {
             for(FeedPicsVo vo : feedPicsList) {
                 System.out.println(vo);
                 FeedSelVo feedVo = feedMap.get(vo.getIfeed());
-                List<String> strPicsList = feedVo.getPics();
-                strPicsList.add(vo.getPic());
+                feedVo.getPics().add(vo.getPic());
+
             }
         }
         return feedSelVoList;

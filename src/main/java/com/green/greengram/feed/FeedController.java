@@ -23,7 +23,6 @@ public class FeedController {
 
     @GetMapping
     public List<FeedSelVo> getFeed(int page){
-        System.out.println(page);
         return service.getFeed(page);
     }
 }
