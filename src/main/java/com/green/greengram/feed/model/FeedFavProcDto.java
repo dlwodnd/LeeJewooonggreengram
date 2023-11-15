@@ -5,8 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class FeedSelDto {
+public class FeedFavProcDto {
+    private int ifeed;
     private int iuser;
-    private int startIdx;
-    private int rowCount;
 }

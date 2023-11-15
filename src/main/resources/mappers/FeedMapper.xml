@@ -22,11 +22,14 @@
     </insert>
     <select id="selFeed">
         Select A.ifeed,A.contents,A.location,B.iuser,B.name as writer
-        ,A.created_at as createdAt
+        ,A.created_at as createdAt,if(C.ifeed >0,1,0) as isFav
         From t_feed A
         Join t_user B
         On A.iuser = B.iuser
-        Order by ifeed desc
+        Left Join t_favorite C
+        on A.ifeed = C.ifeed
+        and C.iuser = #{iuser}
+        Order by A.ifeed desc
         Limit #{startIdx}, #{rowCount}
     </select>
     <select id="selFeedPics">
@@ -37,4 +40,14 @@
             #{num}
         </foreach>
     </select>
+    <delete id="delFeedFav">
+        Delete
+        From t_favorite
+        Where ifeed = #{ifeed} and iuser = #{iuser}
+    </delete>
+    <insert id="insFeedFav">
+        Insert Into t_favorite
+        Set ifeed = #{ifeed}
+            ,iuser = #{iuser}
+    </insert>
 </mapper>

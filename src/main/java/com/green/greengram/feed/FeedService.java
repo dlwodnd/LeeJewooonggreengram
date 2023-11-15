@@ -22,9 +22,10 @@ public class FeedService {
         mapper.insFeedPic(p2Dt0);
         return new ResVo(pDto.getIfeed());
     }
-    public List<FeedSelVo> getFeed(int page) {
+    public List<FeedSelVo> getFeed(int page,int iuser) {
         final int ROW_COUNT = 30;
         FeedSelDto dto = FeedSelDto.builder()
+                .iuser(iuser)
                 .startIdx((page - 1) * ROW_COUNT)
                 .rowCount(ROW_COUNT)
                 .build();
@@ -47,4 +48,13 @@ public class FeedService {
         }
         return feedSelVoList;
     }
+
+    public ResVo procFav(FeedFavProcDto dto){
+        int result = mapper.delFeedFav(dto);
+        if(result == 1){
+            return new ResVo(2);
+        }
+        result = mapper.insFeedFav(dto);
+        return new ResVo(result);
+    }//좋아요 토글 기능
 }

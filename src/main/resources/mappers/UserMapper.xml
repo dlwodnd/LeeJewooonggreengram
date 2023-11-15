@@ -13,8 +13,9 @@
             </if>
     </insert>
     <select id="selUserByUid">
-        SELECT upw FROM t_user
+        SELECT iuser,upw,name as nm,pic FROM t_user
         WHERE uid = #{uid}
     </select>
+
 
 </mapper>
