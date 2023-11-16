@@ -20,6 +20,7 @@
         </foreach>
 
     </insert>
+    <!--로그인 한 iuser, 보고자 하는 프로필 주인 iuser -->
     <select id="selFeed">
         Select A.ifeed,A.contents,A.location,B.iuser,B.name as writer
         ,A.created_at as createdAt,if(C.ifeed >0,1,0) as isFav
@@ -28,7 +29,10 @@
         On A.iuser = B.iuser
         Left Join t_favorite C
         on A.ifeed = C.ifeed
-        and C.iuser = #{iuser}
+        and C.iuser = #{loginedIuser}
+        <if test="targetIuser > 0">
+            Where A.iuser = #{targetIuser}
+        </if>
         Order by A.ifeed desc
         Limit #{startIdx}, #{rowCount}
     </select>

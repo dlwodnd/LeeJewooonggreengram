@@ -24,7 +24,12 @@ public class FeedController {
 
     @GetMapping
     public List<FeedSelVo> getFeed(int page,int iuser){
-        return service.getFeed(page,iuser);
+        return service.getFeed(page,iuser,0);
+    }
+
+    @GetMapping("/{targetIuser}")
+    public List<FeedSelVo> getMyFeed(@PathVariable int targetIuser, int page,int loginedIuser){
+        return service.getFeed(page,loginedIuser,targetIuser);
     }
     @GetMapping("/{ifeed}/fav")
     public ResVo procFav(@PathVariable int ifeed, int iuser){

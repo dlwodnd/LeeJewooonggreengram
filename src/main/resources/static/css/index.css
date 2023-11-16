@@ -2,7 +2,7 @@
 
 html { position: relative; min-height: 100%; margin: 0; scroll-behavior: smooth; }
 body { min-height: 100%; }
-
+a { text-decoration: none; color: black; }
 .back_color { background-color: #fafafa; }
 .bold { font-weight: bold; }
 .circleimg { display: inline-block; overflow: hidden; border-radius: 50%; border: 1px solid #ecf0f1; }
