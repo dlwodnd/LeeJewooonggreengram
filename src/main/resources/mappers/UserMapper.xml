@@ -23,8 +23,7 @@
         FROM t_user A
         LEFT JOIN t_feed B
         ON A.iuser = B.iuser
-        LEFT JOIN (
-                    SELECT A.iuser, COUNT(A.ifeed) favCnt
+        LEFT JOIN ( SELECT A.iuser, COUNT(A.ifeed) favCnt
                     FROM t_feed A
                     INNER JOIN t_favorite B
                     ON A.ifeed = B.ifeed
